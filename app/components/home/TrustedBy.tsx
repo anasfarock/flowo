@@ -39,7 +39,7 @@ export default function TrustedBy() {
                   alt={logo.alt}
                   src={logo.src}
                   width={100}
-                  height={100}
+                  height={24}
                   className="h-full w-auto object-contain"
                   loading="lazy"
                 />
