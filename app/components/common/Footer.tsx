@@ -13,12 +13,11 @@ interface FooterColumn {
 
 const footerColumns: FooterColumn[] = [
   {
-    title: "Product",
+    title: "Solutions",
     links: [
-      { label: "Features", href: "#" },
-      { label: "Pricing", href: "#" },
-      { label: "Integrations", href: "#" },
-      { label: "Updates", href: "#" },
+      { label: "Finance", href: "#" },
+      { label: "Human Resources", href: "#" },
+      { label: "Marketing", href: "#" },
     ],
   },
   {
@@ -27,38 +26,27 @@ const footerColumns: FooterColumn[] = [
       { label: "About Us", href: "#" },
       { label: "Careers", href: "#" },
       { label: "Contact", href: "#" },
-      { label: "Blog", href: "#" },
-    ],
-  },
-  {
-    title: "Solutions",
-    links: [
-      { label: "Finance", href: "#" },
-      { label: "HR", href: "#" },
-      { label: "Customer Service", href: "#" },
-      { label: "Marketing", href: "#" },
     ],
   },
   {
     title: "Legal",
     links: [
-      { label: "Terms of Service", href: "#" },
       { label: "Privacy Policy", href: "#" },
-      { label: "Cookie Policy", href: "#" },
+      { label: "Terms of Service", href: "#" },
     ],
   },
 ];
 
 export default function Footer() {
   return (
-    <footer className="bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800">
-      <div className="container mx-auto px-4 py-16">
-        {/* Footer Content */}
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-12">
+    <footer className="bg-card-light dark:bg-card-dark border-t border-gray-200/80 dark:border-gray-700/80">
+      <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-10">
+        {/* Footer Content Grid */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
           {/* Brand Section */}
-          <div className="col-span-full lg:col-span-2">
-            <div className="flex items-center gap-3">
-              <div className="text-primary size-7">
+          <div className="col-span-2 md:col-span-1">
+            <div className="flex items-center gap-2 text-text-light dark:text-text-dark">
+              <div className="size-6 text-primary">
                 <svg
                   fill="none"
                   viewBox="0 0 48 48"
@@ -74,31 +62,36 @@ export default function Footer() {
               </div>
               <h2 className="text-xl font-bold">Flowo</h2>
             </div>
-            <p className="mt-4 text-sm text-gray-600 dark:text-gray-400">
-              AI-powered automation to supercharge your business.
+            <p className="mt-4 text-sm text-text-secondary-light dark:text-text-secondary-dark">
+              Automate your business, amplify your results.
             </p>
           </div>
 
-          {/* Footer Links */}
+          {/* Footer Columns */}
           {footerColumns.map((column, index) => (
-            <div key={index} className="col-span-1 flex flex-col gap-4">
-              <h4 className="font-bold">{column.title}</h4>
-              {column.links.map((link, linkIndex) => (
-                <Link
-                  key={linkIndex}
-                  href={link.href}
-                  className="text-sm text-gray-600 dark:text-gray-400 hover:text-primary transition-colors"
-                >
-                  {link.label}
-                </Link>
-              ))}
+            <div key={index}>
+              <h3 className="text-sm font-bold uppercase tracking-wider">
+                {column.title}
+              </h3>
+              <ul className="mt-4 space-y-2">
+                {column.links.map((link, linkIndex) => (
+                  <li key={linkIndex}>
+                    <Link
+                      href={link.href}
+                      className="text-sm text-text-secondary-light dark:text-text-secondary-dark hover:text-primary transition-colors"
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
             </div>
           ))}
         </div>
 
-        {/* Divider and Copyright */}
-        <div className="mt-12 border-t border-gray-200 dark:border-gray-800 pt-8 flex justify-between items-center flex-wrap gap-4">
-          <p className="text-sm text-gray-500 dark:text-gray-400">
+        {/* Footer Bottom */}
+        <div className="mt-8 border-t border-gray-200/80 dark:border-gray-700/80 pt-8 flex flex-col sm:flex-row justify-between items-center">
+          <p className="text-sm text-text-secondary-light dark:text-text-secondary-dark">
             © 2024 Flowo, Inc. All rights reserved.
           </p>
         </div>

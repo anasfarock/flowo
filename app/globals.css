@@ -4,6 +4,12 @@
   --color-primary: #137fec;
   --color-background-light: #f6f7f8;
   --color-background-dark: #101922;
+  --color-card-light: #ffffff;
+  --color-card-dark: #182431;
+  --color-text-light: #111418;
+  --color-text-dark: #f6f7f8;
+  --color-text-secondary-light: #617589;
+  --color-text-secondary-dark: #a0aec0;
 }
 
 .material-symbols-outlined {
