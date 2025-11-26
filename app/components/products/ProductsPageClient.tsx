@@ -1,10 +1,12 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import ProductHero from "../../components/products/ProductHero";
-import ProductFilters from "../../components/products/ProductFilters";
-import ProductGrid from "../../components/products/ProductGrid";
-import ProductPagination from "../../components/products/ProductPagination";
+import ProductHero from "./ProductHero";
+import ProductFilters from "./ProductFilters";
+import ProductGrid from "./ProductGrid";
+import ProductPagination from "./ProductPagination";
+import Header from "../common/Header";
+import Footer from "../common/Footer";
 
 interface Product {
   id: string;
@@ -87,26 +89,30 @@ export default function ProductsPageClient({
   };
 
   return (
-    <main className="flex-grow">
-      <ProductHero />
-      <ProductFilters
-        categories={categories.filter((cat) => cat !== "All")}
-        selectedCategory={selectedCategory}
-        onCategoryChange={handleCategoryChange}
-        sortBy={sortBy}
-        onSortChange={setSortBy}
-      />
-      <ProductGrid
-        products={paginatedProducts}
-        selectedCategory={selectedCategory}
-      />
-      {totalPages > 1 && (
-        <ProductPagination
-          currentPage={currentPage}
-          totalPages={totalPages}
-          onPageChange={setCurrentPage}
+    <>
+      <Header />
+      <main className="flex-grow">
+        <ProductHero />
+        <ProductFilters
+          categories={categories.filter((cat) => cat !== "All")}
+          selectedCategory={selectedCategory}
+          onCategoryChange={handleCategoryChange}
+          sortBy={sortBy}
+          onSortChange={setSortBy}
         />
-      )}
-    </main>
+        <ProductGrid
+          products={paginatedProducts}
+          selectedCategory={selectedCategory}
+        />
+        {totalPages > 1 && (
+          <ProductPagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={setCurrentPage}
+          />
+        )}
+      </main>
+      <Footer />
+    </>
   );
 }
