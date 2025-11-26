@@ -29,7 +29,7 @@ export default function Header() {
           <div className="hidden md:flex flex-1 items-center justify-end gap-8">
             <nav className="flex items-center gap-9">
               <Link
-                href="#products"
+                href="/products"
                 className="text-sm font-medium hover:text-primary transition-colors"
               >
                 Products
