@@ -1,6 +1,7 @@
 @import "tailwindcss";
 
 @theme {
+  /* Original colors */
   --color-primary: #137fec;
   --color-background-light: #f6f7f8;
   --color-background-dark: #101922;
@@ -10,6 +11,13 @@
   --color-text-dark: #f6f7f8;
   --color-text-secondary-light: #617589;
   --color-text-secondary-dark: #a0aec0;
+
+  /* About page colors (alternative palette) */
+  --color-primary-alt: #0a2540;
+  --color-secondary: #00c4cc;
+  --color-background-light-alt: #f6f9fc;
+  --color-text-light-alt: #525f7f;
+  --color-text-dark-alt: #a0aec0;
 }
 
 .material-symbols-outlined {
