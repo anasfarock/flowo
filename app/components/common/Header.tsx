@@ -49,7 +49,7 @@ export default function Header() {
                 About Us
               </Link>
               <Link
-                href="#contact"
+                href="/contact"
                 className="text-sm font-medium hover:text-primary transition-colors"
               >
                 Contact
