@@ -37,10 +37,10 @@ export default function Header() {
                 Products
               </Link>
               <Link
-                href="#solutions"
+                href="/docs"
                 className="text-sm font-medium hover:text-primary transition-colors"
               >
-                Solutions
+                Documentation
               </Link>
               <Link
                 href="/about"
