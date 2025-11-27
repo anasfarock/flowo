@@ -43,49 +43,53 @@ export default function ProductPagination({
   };
 
   return (
-    <div className="flex justify-center items-center gap-2 pb-16">
-      {/* Previous Button */}
-      <button
-        onClick={() => onPageChange(currentPage - 1)}
-        disabled={currentPage === 1}
-        className="flex items-center justify-center size-9 rounded-lg border border-gray-300 dark:border-gray-700 text-text-secondary-light dark:text-text-secondary-dark hover:bg-gray-200 dark:hover:bg-card-dark transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-        aria-label="Previous page"
-      >
-        <span className="material-symbols-outlined text-xl">chevron_left</span>
-      </button>
+    <section className="py-12">
+      <div className="container mx-auto px-4">
+        <div className="flex justify-center items-center gap-2">
+          {/* Previous Button */}
+          <button
+            onClick={() => onPageChange(currentPage - 1)}
+            disabled={currentPage === 1}
+            className="flex items-center justify-center size-9 rounded-lg border border-gray-300 dark:border-gray-700 text-text-secondary-light dark:text-text-secondary-dark hover:bg-gray-200 dark:hover:bg-card-dark transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            aria-label="Previous page"
+          >
+            <span className="material-symbols-outlined text-xl">chevron_left</span>
+          </button>
 
-      {/* Page Numbers */}
-      {getPageNumbers().map((page, index) => (
-        <React.Fragment key={index}>
-          {page === "..." ? (
-            <span className="text-text-secondary-light dark:text-text-secondary-dark px-2">
-              ...
-            </span>
-          ) : (
-            <button
-              onClick={() => onPageChange(Number(page))}
-              className={`flex items-center justify-center size-9 rounded-lg font-medium transition-colors ${
-                page === currentPage
-                  ? "bg-primary text-white"
-                  : "hover:bg-gray-200 dark:hover:bg-card-dark text-text-light dark:text-text-dark"
-              }`}
-              aria-current={page === currentPage ? "page" : undefined}
-            >
-              {page}
-            </button>
-          )}
-        </React.Fragment>
-      ))}
+          {/* Page Numbers */}
+          {getPageNumbers().map((page, index) => (
+            <React.Fragment key={index}>
+              {page === "..." ? (
+                <span className="text-text-secondary-light dark:text-text-secondary-dark px-2">
+                  ...
+                </span>
+              ) : (
+                <button
+                  onClick={() => onPageChange(Number(page))}
+                  className={`flex items-center justify-center size-9 rounded-lg font-medium transition-colors ${
+                    page === currentPage
+                      ? "bg-primary text-white"
+                      : "hover:bg-gray-200 dark:hover:bg-card-dark text-text-light dark:text-text-dark"
+                  }`}
+                  aria-current={page === currentPage ? "page" : undefined}
+                >
+                  {page}
+                </button>
+              )}
+            </React.Fragment>
+          ))}
 
-      {/* Next Button */}
-      <button
-        onClick={() => onPageChange(currentPage + 1)}
-        disabled={currentPage === totalPages}
-        className="flex items-center justify-center size-9 rounded-lg border border-gray-300 dark:border-gray-700 text-text-secondary-light dark:text-text-secondary-dark hover:bg-gray-200 dark:hover:bg-card-dark transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-        aria-label="Next page"
-      >
-        <span className="material-symbols-outlined text-xl">chevron_right</span>
-      </button>
-    </div>
+          {/* Next Button */}
+          <button
+            onClick={() => onPageChange(currentPage + 1)}
+            disabled={currentPage === totalPages}
+            className="flex items-center justify-center size-9 rounded-lg border border-gray-300 dark:border-gray-700 text-text-secondary-light dark:text-text-secondary-dark hover:bg-gray-200 dark:hover:bg-card-dark transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            aria-label="Next page"
+          >
+            <span className="material-symbols-outlined text-xl">chevron_right</span>
+          </button>
+        </div>
+      </div>
+    </section>
   );
 }

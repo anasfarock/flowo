@@ -36,8 +36,10 @@ export default function ProductGrid({
   }, [products, selectedCategory]);
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 px-4 sm:px-6 lg:px-10 pb-16">
-      {filteredProducts.map((product) => (
+    <section className="py-12">
+      <div className="container mx-auto px-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {filteredProducts.map((product) => (
         <Link
           key={product.id}
           href={`/products/${product.slug}`}
@@ -92,15 +94,17 @@ export default function ProductGrid({
             </button>
           </div>
         </Link>
-      ))}
+          ))}
 
-      {filteredProducts.length === 0 && (
-        <div className="col-span-full py-12 text-center">
-          <p className="text-text-secondary-light dark:text-text-secondary-dark">
-            No products found in this category.
-          </p>
+          {filteredProducts.length === 0 && (
+            <div className="col-span-full py-12 text-center">
+              <p className="text-text-secondary-light dark:text-text-secondary-dark">
+                No products found in this category.
+              </p>
+            </div>
+          )}
         </div>
-      )}
-    </div>
+      </div>
+    </section>
   );
 }
