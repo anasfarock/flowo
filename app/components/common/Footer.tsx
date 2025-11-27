@@ -40,7 +40,7 @@ const footerColumns: FooterColumn[] = [
 export default function Footer() {
   return (
     <footer className="bg-card-light dark:bg-card-dark border-t border-gray-200/80 dark:border-gray-700/80">
-      <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-10">
+      <div className="container mx-auto px-4 py-12">
         {/* Footer Content Grid */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
           {/* Brand Section */}
