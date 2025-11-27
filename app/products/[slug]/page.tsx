@@ -1,5 +1,7 @@
 import { getProductBySlug, getProductSlugs } from "../../lib/products";
 import { notFound } from "next/navigation";
+import Header from "../../components/common/Header";
+import Footer from "../../components/common/Footer";
 import ProductDetailBreadcrumb from "../../components/products/detail/ProductDetailBreadcrumb";
 import ProductMediaGallery from "../../components/products/detail/ProductMediaGallery";
 import ProductInfoCard from "../../components/products/detail/ProductInfo";
@@ -49,40 +51,44 @@ export default async function ProductDetailPage({
   }
 
   return (
-    <main className="flex-grow">
-      <div className="container mx-auto px-4 py-8 md:py-12">
-        {/* Breadcrumbs */}
-        <ProductDetailBreadcrumb productTitle={product.title} />
+    <>
+      <Header />
+      <main className="flex-grow">
+        <div className="container mx-auto px-4 py-8 md:py-12">
+          {/* Breadcrumbs */}
+          <ProductDetailBreadcrumb productTitle={product.title} />
 
-        {/* Main Content Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-12">
-          {/* Left Column: Media Gallery (Sticky) */}
-          <ProductMediaGallery product={product} />
+          {/* Main Content Grid */}
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-12">
+            {/* Left Column: Media Gallery (Sticky) */}
+            <ProductMediaGallery product={product} />
 
-          {/* Right Column: Product Info */}
-          <ProductInfoCard product={product} />
+            {/* Right Column: Product Info */}
+            <ProductInfoCard product={product} />
+          </div>
+
+          {/* Tabbed Information Section */}
+          <ProductTabs product={product} />
+
+          {/* Features Section */}
+          <ProductFeatures product={product} />
+
+          {/* Integrations Section */}
+          <ProductIntegrations product={product} />
+
+          {/* CTA Section */}
+          <ProductCTA product={product} />
         </div>
 
-        {/* Tabbed Information Section */}
-        <ProductTabs product={product} />
-
-        {/* Features Section */}
-        <ProductFeatures product={product} />
-
-        {/* Integrations Section */}
-        <ProductIntegrations product={product} />
-
-        {/* CTA Section */}
-        <ProductCTA product={product} />
-      </div>
-
-      {/* Related Products Section */}
-      <div className="border-t border-gray-200 dark:border-gray-700">
-        <div className="container mx-auto px-4 py-16">
-          <RelatedProducts currentProductSlug={slug} />
+        {/* Related Products Section */}
+        <div className="border-t border-gray-200 dark:border-gray-700">
+          <div className="container mx-auto px-4 py-16">
+            <RelatedProducts currentProductSlug={slug} />
+          </div>
         </div>
-      </div>
-    </main>
+      </main>
+      <Footer />
+    </>
   );
 }
 
