@@ -1,3 +1,5 @@
+import Header from "../components/common/Header";
+import Footer from "../components/common/Footer";
 import ContactHero from "../components/contact/ContactHero";
 import ContactForm from "../components/contact/ContactForm";
 import ContactInfo from "../components/contact/ContactInfo";
@@ -11,7 +13,9 @@ export const metadata = {
 
 export default function ContactPage() {
   return (
-    <main className="flex-grow">
+    <>
+      <Header />
+      <main className="flex-grow">
       {/* Hero Section */}
       <ContactHero />
 
@@ -29,7 +33,9 @@ export default function ContactPage() {
             </div>
           </div>
         </div>
-      </section>
-    </main>
+        </section>
+      </main>
+      <Footer />
+    </>
   );
 }
