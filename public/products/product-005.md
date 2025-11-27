@@ -3,7 +3,7 @@ id: product-005
 title: Customer Feedback Analyzer
 shortDescription: Analyze customer reviews and survey responses in real-time to identify key trends and sentiment.
 category: Customer Service
-thumbnail: /products/product-005/thumbnail.jpg
+thumbnail: /products-media/product-005/thumbnail.jpg
 overview: |
   Leverage AI to analyze customer feedback across all channels. Identify sentiment trends, common issues, and opportunities for improvement in real-time.
 features:

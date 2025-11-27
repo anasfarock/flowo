@@ -3,7 +3,7 @@ id: product-004
 title: IT Ticket Routing System
 shortDescription: Automatically categorize and assign support tickets to the right IT personnel based on issue type.
 category: IT Operations
-thumbnail: /products/product-004/thumbnail.jpg
+thumbnail: /products-media/product-004/thumbnail.jpg
 overview: |
   Automatically route incoming support tickets to the right team members based on issue type, priority, and expertise. Reduce resolution time and improve ticket accuracy.
 features:

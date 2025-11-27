@@ -3,7 +3,7 @@ id: product-001
 title: Automated Invoice Processing
 shortDescription: Extract, validate, and process invoice data automatically, reducing manual entry and errors.
 category: Finance & Accounting
-thumbnail: /products/product-001/thumbnail.jpg
+thumbnail: /products-media/product-001/thumbnail.jpg
 overview: |
   Our Automated Invoice Processing solution uses advanced AI to extract key information from invoices, validate data accuracy, and seamlessly integrate with your accounting systems. Save hours of manual data entry and reduce errors by up to 99%.
 features:

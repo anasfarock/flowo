@@ -3,7 +3,7 @@ id: product-006
 title: Sales Lead Qualification Bot
 shortDescription: Instantly qualify website leads based on predefined criteria and route them to your sales team.
 category: Marketing Automation
-thumbnail: /products/product-006/thumbnail.jpg
+thumbnail: /products-media/product-006/thumbnail.jpg
 overview: |
   Automatically qualify incoming leads using customizable criteria. Route qualified leads immediately to sales teams and nurture unqualified leads automatically.
 features:

@@ -3,7 +3,7 @@ id: product-003
 title: Social Media Content Scheduler
 shortDescription: Plan and publish content across multiple social platforms with our intelligent scheduling tool.
 category: Marketing Automation
-thumbnail: /products/product-003/thumbnail.jpg
+thumbnail: /products-media/product-003/thumbnail.jpg
 overview: |
   Schedule and publish content to all major social platforms from a single dashboard. Use AI-powered content suggestions, optimal posting times, and performance analytics.
 features:
