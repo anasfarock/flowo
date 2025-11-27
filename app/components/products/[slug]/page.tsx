@@ -1,8 +1,13 @@
 import { getProductBySlug, getProductSlugs } from "../../../lib/products";
 import { notFound } from "next/navigation";
-import Image from "next/image";
-import Link from "next/link";
-import ReactMarkdown from "react-markdown";
+import ProductDetailBreadcrumb from "../../../components/products/detail/ProductDetailBreadcrumb";
+import ProductMediaGallery from "../../../components/products/detail/ProductMediaGallery";
+import ProductInfoCard from "../../../components/products/detail/ProductInfo";
+import ProductOverview from "../../../components/products/detail/ProductOverview";
+import ProductFeatures from "../../../components/products/detail/ProductFeatures";
+import ProductIntegrations from "../../../components/products/detail/ProductIntegrations";
+import ProductCTA from "../../../components/products/detail/ProductCTA";
+import RelatedProducts from "../../../components/products/detail/RelatedProducts";
 
 export async function generateStaticParams() {
   const slugs = getProductSlugs();
@@ -31,7 +36,7 @@ export async function generateMetadata({
   };
 }
 
-export default async function ProductPage({
+export default async function ProductDetailPage({
   params,
 }: {
   params: Promise<{ slug: string }>;
@@ -45,169 +50,137 @@ export default async function ProductPage({
 
   return (
     <main className="flex-grow">
-      {/* Hero Section */}
-      <div className="bg-gradient-to-b from-primary/10 dark:from-primary/5 to-transparent py-12 px-4 sm:px-6 lg:px-10">
-        <div className="max-w-4xl mx-auto">
-          <Link
-            href="/products"
-            className="inline-flex items-center gap-2 text-primary hover:text-primary/80 mb-6 text-sm font-medium"
-          >
-            <span className="material-symbols-outlined text-lg">
-              arrow_back
-            </span>
-            Back to Products
-          </Link>
+      <div className="container mx-auto px-4 py-8 md:py-12">
+        {/* Breadcrumbs */}
+        <ProductDetailBreadcrumb productTitle={product.title} />
 
-          <div className="flex flex-col lg:flex-row gap-12 items-start">
-            {/* Left: Product Info */}
-            <div className="flex-1">
-              <div className="mb-4">
-                <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-primary/10 dark:bg-primary/20 text-primary">
-                  {product.category}
-                </span>
-              </div>
+        {/* Main Content Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-12">
+          {/* Left Column: Media Gallery (Sticky) */}
+          <ProductMediaGallery product={product} />
 
-              <h1 className="text-4xl lg:text-5xl font-black leading-tight tracking-[-0.033em] mb-4">
-                {product.title}
-              </h1>
-
-              <p className="text-lg text-text-secondary-light dark:text-text-secondary-dark mb-6">
-                {product.shortDescription}
-              </p>
-
-              <div className="flex items-center gap-6 mb-8">
-                <div>
-                  <p className="text-3xl font-bold text-primary">
-                    {product.price}
-                  </p>
-                </div>
-
-                {product.rating && (
-                  <div className="flex items-center gap-2">
-                    <div className="flex items-center gap-1">
-                      {[...Array(5)].map((_, i) => (
-                        <span
-                          key={i}
-                          className={`text-lg ${
-                            i < Math.floor(product.rating!)
-                              ? "text-yellow-400"
-                              : "text-gray-300"
-                          }`}
-                        >
-                          ★
-                        </span>
-                      ))}
-                    </div>
-                    <div>
-                      <p className="font-semibold">
-                        {product.rating}
-                        <span className="text-gray-500 text-sm">/5</span>
-                      </p>
-                      {product.reviews && (
-                        <p className="text-sm text-text-secondary-light dark:text-text-secondary-dark">
-                          ({product.reviews} reviews)
-                        </p>
-                      )}
-                    </div>
-                  </div>
-                )}
-              </div>
-
-              <button className="w-full sm:w-auto flex items-center justify-center gap-2 px-8 py-3 bg-primary text-white font-bold rounded-lg hover:bg-opacity-90 transition-colors">
-                <span>Get Started</span>
-                <span className="material-symbols-outlined">arrow_forward</span>
-              </button>
-            </div>
-
-            {/* Right: Product Image */}
-            <div className="flex-1 w-full">
-              <div className="relative aspect-video rounded-xl overflow-hidden shadow-lg">
-                <Image
-                  src={product.thumbnail}
-                  alt={product.title}
-                  fill
-                  className="object-cover"
-                  priority
-                />
-              </div>
-            </div>
-          </div>
+          {/* Right Column: Product Info */}
+          <ProductInfoCard product={product} />
         </div>
+
+        {/* Tabbed Information Section */}
+        <ProductTabs product={product} />
       </div>
 
-      {/* Overview Section */}
-      <section className="py-12 px-4 sm:px-6 lg:px-10 bg-card-light dark:bg-background-dark">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold mb-6">Overview</h2>
-          <div className="prose dark:prose-invert max-w-none">
-            <p className="text-lg text-text-secondary-light dark:text-text-secondary-dark leading-relaxed whitespace-pre-wrap">
-              {product.overview}
-            </p>
-          </div>
+      {/* Related Products Section */}
+      <div className="border-t border-gray-200 dark:border-gray-700">
+        <div className="container mx-auto px-4 py-16">
+          <RelatedProducts currentProductSlug={slug} />
         </div>
-      </section>
-
-      {/* Features Section */}
-      <section className="py-12 px-4 sm:px-6 lg:px-10">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold mb-8">Key Features</h2>
-          <div className="grid sm:grid-cols-2 gap-4">
-            {product.features.map((feature, index) => (
-              <div key={index} className="flex gap-4 p-4 rounded-lg bg-card-light dark:bg-card-dark">
-                <span className="text-primary text-xl font-bold flex-shrink-0">
-                  ✓
-                </span>
-                <p className="text-text-light dark:text-text-dark">{feature}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Integrations Section */}
-      <section className="py-12 px-4 sm:px-6 lg:px-10 bg-card-light dark:bg-background-dark">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold mb-8">Integrations</h2>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {product.integrations.map((integration, index) => (
-              <div
-                key={index}
-                className="flex items-center gap-3 p-4 rounded-lg bg-background-light dark:bg-card-dark border border-gray-200 dark:border-gray-700"
-              >
-                <span className="material-symbols-outlined text-primary">
-                  check_circle
-                </span>
-                <span className="font-medium">{integration}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-16 px-4 sm:px-6 lg:px-10">
-        <div className="max-w-4xl mx-auto bg-primary/10 dark:bg-primary/5 rounded-xl p-8 text-center">
-          <h2 className="text-2xl lg:text-3xl font-bold mb-4">
-            Ready to Transform Your Workflow?
-          </h2>
-          <p className="text-lg text-text-secondary-light dark:text-text-secondary-dark mb-8">
-            Join hundreds of companies using {product.title}
-          </p>
-          <button className="inline-flex items-center justify-center gap-2 px-8 py-3 bg-primary text-white font-bold rounded-lg hover:bg-opacity-90 transition-colors">
-            <span>Request a Demo</span>
-            <span className="material-symbols-outlined">arrow_forward</span>
-          </button>
-        </div>
-      </section>
-
-      {/* Markdown Content */}
-      {product.content && (
-        <section className="py-12 px-4 sm:px-6 lg:px-10 bg-card-light dark:bg-background-dark">
-          <div className="max-w-4xl mx-auto prose dark:prose-invert max-w-none">
-            <ReactMarkdown>{product.content}</ReactMarkdown>
-          </div>
-        </section>
-      )}
+      </div>
     </main>
+  );
+}
+
+function ProductTabs({ product }: { product: any }) {
+  return (
+    <div className="mt-12 lg:mt-16">
+      <div className="border-b border-gray-200 dark:border-gray-700">
+        <nav aria-label="Tabs" className="flex -mb-px space-x-8">
+          <a
+            aria-current="page"
+            className="whitespace-nowrap py-4 px-1 border-b-2 font-medium text-base text-primary border-primary"
+            href="#"
+          >
+            Overview
+          </a>
+          <a
+            className="whitespace-nowrap py-4 px-1 border-b-2 font-medium text-base text-text-secondary-light dark:text-gray-400 border-transparent hover:text-gray-700 dark:hover:text-gray-200 hover:border-gray-300 dark:hover:border-gray-500"
+            href="#"
+          >
+            Features
+          </a>
+          <a
+            className="whitespace-nowrap py-4 px-1 border-b-2 font-medium text-base text-text-secondary-light dark:text-gray-400 border-transparent hover:text-gray-700 dark:hover:text-gray-200 hover:border-gray-300 dark:hover:border-gray-500"
+            href="#"
+          >
+            Use Cases
+          </a>
+          <a
+            className="whitespace-nowrap py-4 px-1 border-b-2 font-medium text-base text-text-secondary-light dark:text-gray-400 border-transparent hover:text-gray-700 dark:hover:text-gray-200 hover:border-gray-300 dark:hover:border-gray-500"
+            href="#"
+          >
+            Integrations
+          </a>
+          <a
+            className="whitespace-nowrap py-4 px-1 border-b-2 font-medium text-base text-text-secondary-light dark:text-gray-400 border-transparent hover:text-gray-700 dark:hover:text-gray-200 hover:border-gray-300 dark:hover:border-gray-500"
+            href="#"
+          >
+            Reviews
+          </a>
+        </nav>
+      </div>
+
+      {/* Tab Content */}
+      <div className="py-10 grid grid-cols-1 md:grid-cols-3 gap-8">
+        <ProductOverview product={product} />
+        <RatingSummary product={product} />
+      </div>
+    </div>
+  );
+}
+
+function RatingSummary({ product }: { product: any }) {
+  const ratingData = [
+    { stars: 5, percentage: 80 },
+    { stars: 4, percentage: 12 },
+    { stars: 3, percentage: 5 },
+    { stars: 2, percentage: 2 },
+    { stars: 1, percentage: 1 },
+  ];
+
+  return (
+    <div className="bg-card-light dark:bg-gray-800/50 rounded-xl p-6 shadow-sm border border-gray-200 dark:border-gray-700">
+      <p className="text-lg font-bold text-text-light dark:text-white mb-4">
+        Customer Ratings
+      </p>
+      <div className="flex flex-wrap gap-x-8 gap-y-6">
+        <div className="flex flex-col gap-2">
+          <p className="text-text-light dark:text-white text-4xl font-black leading-tight tracking-[-0.033em]">
+            {product.rating?.toFixed(1) || "N/A"}
+          </p>
+          <div className="flex gap-0.5 text-yellow-500">
+            {[...Array(5)].map((_, i) => (
+              <span
+                key={i}
+                className="material-symbols-outlined text-lg"
+                style={{
+                  fontVariationSettings:
+                    i < Math.floor(product.rating || 0) ? "'FILL' 1" : "'FILL' 0",
+                }}
+              >
+                star
+              </span>
+            ))}
+          </div>
+          <p className="text-text-light dark:text-gray-300 text-base font-normal leading-normal">
+            {product.reviews?.toLocaleString()} reviews
+          </p>
+        </div>
+        <div className="grid min-w-[200px] max-w-[400px] flex-1 grid-cols-[20px_1fr_40px] items-center gap-y-3">
+          {ratingData.map((data) => (
+            <div key={data.stars} className="contents">
+              <p className="text-text-light dark:text-gray-300 text-sm font-normal leading-normal">
+                {data.stars}
+              </p>
+              <div className="flex h-2 flex-1 overflow-hidden rounded-full bg-gray-300 dark:bg-gray-700">
+                <div
+                  className="rounded-full bg-primary"
+                  style={{ width: `${data.percentage}%` }}
+                ></div>
+              </div>
+              <p className="text-text-secondary-light dark:text-gray-400 text-sm font-normal leading-normal text-right">
+                {data.percentage}%
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
   );
 }
