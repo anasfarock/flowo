@@ -25,9 +25,8 @@ export default function AboutPage() {
           {/* Mission & Vision */}
           <MissionVision />
 
-          {/* Our Journey */}
-          <OurJourney />
-
+          {/* Our Journey 
+          <OurJourney /> */}
           {/* Core Values Section */}
           <CoreValues />
 
