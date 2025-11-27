@@ -92,7 +92,17 @@ export default function Footer() {
         {/* Footer Bottom */}
         <div className="mt-8 border-t border-gray-200/80 dark:border-gray-700/80 pt-8 flex flex-col sm:flex-row justify-between items-center">
           <p className="text-sm text-text-secondary-light dark:text-text-secondary-dark">
-            © 2024 Flowo, Inc. All rights reserved.
+            © 2025 Flowo, Inc. All rights reserved.
+          </p>
+          <p className="text-sm text-text-secondary-light dark:text-text-secondary-dark">
+            Designed and Developed by{" "}
+            <Link
+              href="https://www.anasfarooq.com"
+              className="text-white hover:underline transition-colors"
+            >
+              Anas Farooq
+            </Link>
+            .
           </p>
         </div>
       </div>
