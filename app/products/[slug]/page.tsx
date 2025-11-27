@@ -1,13 +1,13 @@
-import { getProductBySlug, getProductSlugs } from "../../../lib/products";
+import { getProductBySlug, getProductSlugs } from "../../lib/products";
 import { notFound } from "next/navigation";
-import ProductDetailBreadcrumb from "../../../components/products/detail/ProductDetailBreadcrumb";
-import ProductMediaGallery from "../../../components/products/detail/ProductMediaGallery";
-import ProductInfoCard from "../../../components/products/detail/ProductInfo";
-import ProductOverview from "../../../components/products/detail/ProductOverview";
-import ProductFeatures from "../../../components/products/detail/ProductFeatures";
-import ProductIntegrations from "../../../components/products/detail/ProductIntegrations";
-import ProductCTA from "../../../components/products/detail/ProductCTA";
-import RelatedProducts from "../../../components/products/detail/RelatedProducts";
+import ProductDetailBreadcrumb from "../../components/products/detail/ProductDetailBreadcrumb";
+import ProductMediaGallery from "../../components/products/detail/ProductMediaGallery";
+import ProductInfoCard from "../../components/products/detail/ProductInfo";
+import ProductOverview from "../../components/products/detail/ProductOverview";
+import ProductFeatures from "../../components/products/detail/ProductFeatures";
+import ProductIntegrations from "../../components/products/detail/ProductIntegrations";
+import ProductCTA from "../../components/products/detail/ProductCTA";
+import RelatedProducts from "../../components/products/detail/RelatedProducts";
 
 export async function generateStaticParams() {
   const slugs = getProductSlugs();

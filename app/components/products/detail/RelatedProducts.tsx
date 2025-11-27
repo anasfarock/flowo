@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { getAllProducts } from "@/lib/products";
+import { getAllProducts } from "../../../lib/products";
 
 interface RelatedProductsProps {
   currentProductSlug: string;
