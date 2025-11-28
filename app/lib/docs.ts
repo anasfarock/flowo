@@ -35,10 +35,28 @@ export async function getDocSlugs(): Promise<string[]> {
     return [];
   }
 
-  return fs
-    .readdirSync(docsDirectory)
-    .filter((file) => file.endsWith(".md"))
-    .map((file) => file.replace(/\.md$/, ""));
+  const slugs: string[] = [];
+
+  function walkDir(dir: string, prefix: string = "") {
+    const files = fs.readdirSync(dir);
+
+    files.forEach((file) => {
+      const fullPath = path.join(dir, file);
+      const stat = fs.statSync(fullPath);
+
+      if (stat.isDirectory()) {
+        // Recursively walk subdirectories
+        walkDir(fullPath, prefix ? `${prefix}/${file}` : file);
+      } else if (file.endsWith(".md")) {
+        // Add markdown files with their path
+        const slug = prefix ? `${prefix}/${file.replace(/\.md$/, "")}` : file.replace(/\.md$/, "");
+        slugs.push(slug);
+      }
+    });
+  }
+
+  walkDir(docsDirectory);
+  return slugs;
 }
 
 export async function getDocBySlug(slug: string): Promise<Doc | null> {
@@ -98,15 +116,25 @@ export async function getCategories(): Promise<string[]> {
 function extractHeadings(markdown: string): DocHeading[] {
   const headingRegex = /^(#{1,6})\s+(.+)$/gm;
   const headings: DocHeading[] = [];
+  const idCounts: Record<string, number> = {};
   let match;
 
   while ((match = headingRegex.exec(markdown)) !== null) {
     const level = match[1].length;
     const text = match[2];
-    const id = text
+    const baseId = text
       .toLowerCase()
       .replace(/[^\w\s-]/g, "")
       .replace(/\s+/g, "-");
+
+    // Make IDs unique by appending a counter if duplicates are found
+    let id = baseId;
+    if (idCounts[baseId] !== undefined) {
+      idCounts[baseId]++;
+      id = `${baseId}-${idCounts[baseId]}`;
+    } else {
+      idCounts[baseId] = 0;
+    }
 
     headings.push({ id, level, text });
   }

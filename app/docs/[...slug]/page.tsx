@@ -9,17 +9,18 @@ import DocsBreadcrumb from "../../components/docs/DocsBreadcrumb";
 export async function generateStaticParams() {
   const slugs = await getDocSlugs();
   return slugs.map((slug) => ({
-    slug,
+    slug: slug.split("/"),
   }));
 }
 
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ slug: string[] }>;
 }) {
   const { slug } = await params;
-  const doc = await getDocBySlug(slug);
+  const slugStr = slug.join("/");
+  const doc = await getDocBySlug(slugStr);
 
   if (!doc) {
     return {
@@ -36,10 +37,11 @@ export async function generateMetadata({
 export default async function DocPage({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ slug: string[] }>;
 }) {
   const { slug } = await params;
-  const doc = await getDocBySlug(slug);
+  const slugStr = slug.join("/");
+  const doc = await getDocBySlug(slugStr);
 
   if (!doc) {
     notFound();
@@ -56,7 +58,7 @@ export default async function DocPage({
           <div className="flex flex-col lg:flex-row gap-8">
             {/* Sidebar */}
             <div className="lg:w-64 lg:flex-shrink-0">
-              <DocsSidebar docs={allDocs} grouped={grouped} activeSlug={slug} />
+              <DocsSidebar docs={allDocs} grouped={grouped} activeSlug={slugStr} />
             </div>
 
             {/* Main Content */}

@@ -5,12 +5,11 @@ import { useState } from "react";
 import { Doc } from "../../lib/docs";
 
 interface DocsSidebarProps {
-  docs: Doc[];
   activeSlug?: string;
   grouped: Record<string, Doc[]>;
 }
 
-export default function DocsSidebar({ docs, activeSlug, grouped }: DocsSidebarProps) {
+export default function DocsSidebar({ activeSlug, grouped }: DocsSidebarProps) {
   const [expandedCategories, setExpandedCategories] = useState<Set<string>>(
     new Set(
       activeSlug

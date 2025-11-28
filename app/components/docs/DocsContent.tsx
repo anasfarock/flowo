@@ -87,36 +87,64 @@ export default function DocsContent({ doc }: DocsContentProps) {
 }
 
 function MarkdownContent({ content }: { content: string }) {
+  const idCounts: Record<string, number> = {};
+
+  function getUniqueHeadingId(text: string): string {
+    const baseId = text
+      .toLowerCase()
+      .replace(/[^\w\s-]/g, "")
+      .replace(/\s+/g, "-");
+
+    let id = baseId;
+    if (idCounts[baseId] !== undefined) {
+      idCounts[baseId]++;
+      id = `${baseId}-${idCounts[baseId]}`;
+    } else {
+      idCounts[baseId] = 0;
+    }
+
+    return id;
+  }
+
   return (
     <ReactMarkdown
       components={{
-        h1: ({ children }) => (
-          <h1
-            className="text-3xl font-bold text-text-light dark:text-white mt-8 mb-4"
-            data-heading-id={getHeadingId(String(children))}
-            id={getHeadingId(String(children))}
-          >
-            {children}
-          </h1>
-        ),
-        h2: ({ children }) => (
-          <h2
-            className="text-2xl font-bold text-text-light dark:text-white mt-6 mb-3"
-            data-heading-id={getHeadingId(String(children))}
-            id={getHeadingId(String(children))}
-          >
-            {children}
-          </h2>
-        ),
-        h3: ({ children }) => (
-          <h3
-            className="text-xl font-bold text-text-light dark:text-white mt-4 mb-2"
-            data-heading-id={getHeadingId(String(children))}
-            id={getHeadingId(String(children))}
-          >
-            {children}
-          </h3>
-        ),
+        h1: ({ children }) => {
+          const headingId = getUniqueHeadingId(String(children));
+          return (
+            <h1
+              className="text-3xl font-bold text-text-light dark:text-white mt-8 mb-4"
+              data-heading-id={headingId}
+              id={headingId}
+            >
+              {children}
+            </h1>
+          );
+        },
+        h2: ({ children }) => {
+          const headingId = getUniqueHeadingId(String(children));
+          return (
+            <h2
+              className="text-2xl font-bold text-text-light dark:text-white mt-6 mb-3"
+              data-heading-id={headingId}
+              id={headingId}
+            >
+              {children}
+            </h2>
+          );
+        },
+        h3: ({ children }) => {
+          const headingId = getUniqueHeadingId(String(children));
+          return (
+            <h3
+              className="text-xl font-bold text-text-light dark:text-white mt-4 mb-2"
+              data-heading-id={headingId}
+              id={headingId}
+            >
+              {children}
+            </h3>
+          );
+        },
         h4: ({ children }) => (
           <h4 className="text-lg font-semibold text-text-light dark:text-white mt-3 mb-2">
             {children}
@@ -135,16 +163,11 @@ function MarkdownContent({ content }: { content: string }) {
             {children}
           </a>
         ),
-        code: ({ inline, children }) =>
-          inline ? (
-            <code className="bg-gray-200 dark:bg-gray-800 px-2 py-1 rounded text-sm text-text-light dark:text-text-dark font-mono">
-              {children}
-            </code>
-          ) : (
-            <code className="block bg-gray-200 dark:bg-gray-800 p-4 rounded-lg overflow-x-auto text-sm text-text-light dark:text-text-dark font-mono">
-              {children}
-            </code>
-          ),
+        code: ({ children, className }: { children?: React.ReactNode; className?: string }) => (
+          <code className={`bg-gray-200 dark:bg-gray-800 px-2 py-1 rounded text-sm text-text-light dark:text-text-dark font-mono ${className?.includes('language-') ? 'block p-4 rounded-lg overflow-x-auto' : ''}`}>
+            {children}
+          </code>
+        ),
         pre: ({ children }) => (
           <pre className="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto">
             {children}
@@ -185,11 +208,4 @@ function MarkdownContent({ content }: { content: string }) {
       {content}
     </ReactMarkdown>
   );
-}
-
-function getHeadingId(text: string): string {
-  return text
-    .toLowerCase()
-    .replace(/[^\w\s-]/g, "")
-    .replace(/\s+/g, "-");
 }
