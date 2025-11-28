@@ -1,4 +1,4 @@
-import { getAllDocs } from "../lib/docs";
+import { getAllDocs, groupDocsByCategory } from "../lib/docs";
 import DocsSidebar from "../components/docs/DocsSidebar";
 import DocsContent from "../components/docs/DocsContent";
 import DocsBreadcrumb from "../components/docs/DocsBreadcrumb";
@@ -8,15 +8,16 @@ export const metadata = {
   description: "Learn how to use Flowo with our comprehensive documentation.",
 };
 
-export default function DocsPage() {
-  const docs = getAllDocs();
+export default async function DocsPage() {
+  const docs = await getAllDocs();
+  const grouped = await groupDocsByCategory();
   const firstDoc = docs[0];
 
   return (
     <main className="flex-grow">
       <div className="flex flex-col lg:flex-row min-h-screen">
         {/* Sidebar */}
-        <DocsSidebar docs={docs} />
+        <DocsSidebar docs={docs} grouped={grouped} />
 
         {/* Main Content */}
         <div className="flex-1 flex flex-col">

@@ -1,3 +1,5 @@
+"use server";
+
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
@@ -28,7 +30,7 @@ export interface DocCategory {
 
 const docsDirectory = path.join(process.cwd(), "public/docs");
 
-export function getDocSlugs(): string[] {
+export async function getDocSlugs(): Promise<string[]> {
   if (!fs.existsSync(docsDirectory)) {
     return [];
   }
@@ -39,7 +41,7 @@ export function getDocSlugs(): string[] {
     .map((file) => file.replace(/\.md$/, ""));
 }
 
-export function getDocBySlug(slug: string): Doc | null {
+export async function getDocBySlug(slug: string): Promise<Doc | null> {
   try {
     const filePath = path.join(docsDirectory, `${slug}.md`);
     const fileContents = fs.readFileSync(filePath, "utf8");
@@ -60,10 +62,12 @@ export function getDocBySlug(slug: string): Doc | null {
   }
 }
 
-export function getAllDocs(): Doc[] {
-  const slugs = getDocSlugs();
-  return slugs
-    .map((slug) => getDocBySlug(slug))
+export async function getAllDocs(): Promise<Doc[]> {
+  const slugs = await getDocSlugs();
+  const docs = await Promise.all(
+    slugs.map((slug) => getDocBySlug(slug))
+  );
+  return docs
     .filter((doc) => doc !== null)
     .sort((a, b) => {
       const orderA = a?.order || 999;
@@ -72,12 +76,13 @@ export function getAllDocs(): Doc[] {
     }) as Doc[];
 }
 
-export function getDocsByCategory(category: string): Doc[] {
-  return getAllDocs().filter((doc) => doc.slug.startsWith(category));
+export async function getDocsByCategory(category: string): Promise<Doc[]> {
+  const docs = await getAllDocs();
+  return docs.filter((doc) => doc.slug.startsWith(category));
 }
 
-export function getCategories(): string[] {
-  const docs = getAllDocs();
+export async function getCategories(): Promise<string[]> {
+  const docs = await getAllDocs();
   const categories = new Set<string>();
 
   docs.forEach((doc) => {
@@ -109,8 +114,8 @@ function extractHeadings(markdown: string): DocHeading[] {
   return headings;
 }
 
-export function groupDocsByCategory(): Record<string, Doc[]> {
-  const docs = getAllDocs();
+export async function groupDocsByCategory(): Promise<Record<string, Doc[]>> {
+  const docs = await getAllDocs();
   const grouped: Record<string, Doc[]> = {};
 
   docs.forEach((doc) => {

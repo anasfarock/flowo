@@ -2,15 +2,15 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { Doc, groupDocsByCategory } from "../../lib/docs";
+import { Doc } from "../../lib/docs";
 
 interface DocsSidebarProps {
   docs: Doc[];
   activeSlug?: string;
+  grouped: Record<string, Doc[]>;
 }
 
-export default function DocsSidebar({ docs, activeSlug }: DocsSidebarProps) {
-  const grouped = groupDocsByCategory();
+export default function DocsSidebar({ docs, activeSlug, grouped }: DocsSidebarProps) {
   const [expandedCategories, setExpandedCategories] = useState<Set<string>>(
     new Set(
       activeSlug
