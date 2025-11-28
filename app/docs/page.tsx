@@ -1,0 +1,48 @@
+import { getAllDocs } from "../lib/docs";
+import DocsSidebar from "../components/docs/DocsSidebar";
+import DocsContent from "../components/docs/DocsContent";
+import DocsBreadcrumb from "../components/docs/DocsBreadcrumb";
+
+export const metadata = {
+  title: "Documentation - Flowo",
+  description: "Learn how to use Flowo with our comprehensive documentation.",
+};
+
+export default function DocsPage() {
+  const docs = getAllDocs();
+  const firstDoc = docs[0];
+
+  return (
+    <main className="flex-grow">
+      <div className="flex flex-col lg:flex-row min-h-screen">
+        {/* Sidebar */}
+        <DocsSidebar docs={docs} />
+
+        {/* Main Content */}
+        <div className="flex-1 flex flex-col">
+          {/* Breadcrumb */}
+          {firstDoc && <DocsBreadcrumb doc={firstDoc} />}
+
+          {/* Content Area */}
+          <div className="flex-1 overflow-auto">
+            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+              {firstDoc ? (
+                <DocsContent doc={firstDoc} />
+              ) : (
+                <div className="text-center py-12">
+                  <h1 className="text-3xl font-bold text-text-light dark:text-white mb-4">
+                    Documentation
+                  </h1>
+                  <p className="text-text-secondary-light dark:text-text-secondary-dark">
+                    No documentation found. Please create markdown files in
+                    public/docs/
+                  </p>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  );
+}
