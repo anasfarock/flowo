@@ -31,6 +31,12 @@ export default function Header() {
           <div className="hidden md:flex flex-1 items-center justify-end gap-8">
             <nav className="flex items-center gap-9">
               <Link
+                href="/"
+                className="text-sm font-medium hover:text-primary transition-colors"
+              >
+                Home
+              </Link>
+              <Link
                 href="/products"
                 className="text-sm font-medium hover:text-primary transition-colors"
               >
@@ -55,9 +61,9 @@ export default function Header() {
                 Contact
               </Link>
             </nav>
-            <button className="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold tracking-wide hover:bg-primary/90 transition-colors">
+            {/* <button className="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold tracking-wide hover:bg-primary/90 transition-colors">
               Request a Demo
-            </button>
+            </button> */}
           </div>
         </div>
       </div>
