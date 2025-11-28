@@ -1,6 +1,7 @@
 "use client";
 
 import { FormEvent, useState } from "react";
+import Link from "next/link";
 
 export default function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -146,9 +147,9 @@ export default function ContactForm() {
         {/* Privacy Policy */}
         <p className="text-xs text-gray-500 dark:text-gray-400">
           By submitting this form, you agree to our{" "}
-          <a className="text-primary hover:underline" href="#">
+          <Link href="/docs/Legal/privacy-policy" className="text-primary hover:underline">
             Privacy Policy
-          </a>
+          </Link>
           .
         </p>
       </form>
