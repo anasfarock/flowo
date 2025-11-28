@@ -13,26 +13,26 @@ interface FooterColumn {
 
 const footerColumns: FooterColumn[] = [
   {
-    title: "Solutions",
+    title: "Products",
     links: [
-      { label: "Finance", href: "#" },
-      { label: "Human Resources", href: "#" },
-      { label: "Marketing", href: "#" },
+      { label: "Automated Invoice Processing", href: "/products/product-001" },
+      { label: "Employee Onboarding Workflow", href: "/products/product-002" },
+      { label: "Social Media Content Scheduler", href: "/products/product-003" },
     ],
   },
   {
     title: "Company",
     links: [
-      { label: "About Us", href: "#" },
+      { label: "About Us", href: "/about" },
       { label: "Careers", href: "#" },
-      { label: "Contact", href: "#" },
+      { label: "Contact", href: "/contact" },
     ],
   },
   {
     title: "Legal",
     links: [
-      { label: "Privacy Policy", href: "#" },
-      { label: "Terms of Service", href: "#" },
+      { label: "Privacy Policy", href: "/docs/Legal/privacy-policy" },
+      { label: "Terms of Service", href: "/docs/Legal/terms-of-service" },
     ],
   },
 ];
