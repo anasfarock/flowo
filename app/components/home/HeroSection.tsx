@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 
 export default function HeroSection() {
   return (
@@ -35,12 +36,14 @@ export default function HeroSection() {
 
             {/* CTA Buttons */}
             <div className="flex flex-wrap justify-center md:justify-start gap-4">
-              <button className="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-6 bg-primary text-white text-base font-bold tracking-wide hover:bg-primary/90 transition-colors">
-                Explore Automations
-              </button>
-              <button className="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-6 bg-white/20 backdrop-blur-md text-white text-base font-bold tracking-wide hover:bg-white/30 transition-colors border border-white/30">
+              <Link href="/products">
+                <button className="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-6 bg-primary text-white text-base font-bold tracking-wide hover:bg-primary/90 transition-colors">
+                  Explore Automations
+                </button>
+              </Link>
+              {/* <button className="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-6 bg-white/20 backdrop-blur-md text-white text-base font-bold tracking-wide hover:bg-white/30 transition-colors border border-white/30">
                 Watch a Demo
-              </button>
+              </button> */}
             </div>
           </div>
         </div>
