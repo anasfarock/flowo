@@ -11,7 +11,7 @@ export default function HomePage() {
       <Header />
       <main>
         <HeroSection />
-        <TrustedBy />
+        {/* <TrustedBy /> */}
         <FeaturesSection />
         <CTASection />
       </main>
