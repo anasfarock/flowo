@@ -16,8 +16,8 @@ export default function HeroSection() {
         Your browser does not support the video tag.
       </video>
 
-      {/* Dark Overlay with Fade Effect */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/60 -z-10" />
+      {/* Blur Overlay Effect */}
+      <div className="absolute inset-0 backdrop-blur-sm -z-10" />
 
       {/* Content */}
       <div className="container mx-auto px-4 py-20 md:py-32 relative z-10">
