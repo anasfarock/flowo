@@ -98,7 +98,7 @@ export default function Footer() {
             Designed and Developed by{" "}
             <Link
               href="https://www.anasfarooq.com"
-              className="text-white hover:underline transition-colors"
+              className="text-primary font-bold hover:underline transition-colors"
             >
               Anas Farooq
             </Link>
