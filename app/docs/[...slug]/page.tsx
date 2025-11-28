@@ -1,4 +1,4 @@
-import { getDocBySlug, getDocSlugs, getAllDocs, groupDocsByCategory } from "../../lib/docs";
+import { getDocBySlug, getDocSlugs, groupDocsByCategory } from "../../lib/docs";
 import { notFound } from "next/navigation";
 import Header from "../../components/common/Header";
 import Footer from "../../components/common/Footer";
@@ -47,7 +47,6 @@ export default async function DocPage({
     notFound();
   }
 
-  const allDocs = await getAllDocs();
   const grouped = await groupDocsByCategory();
 
   return (
@@ -58,7 +57,7 @@ export default async function DocPage({
           <div className="flex flex-col lg:flex-row gap-8">
             {/* Sidebar */}
             <div className="lg:w-64 lg:flex-shrink-0">
-              <DocsSidebar docs={allDocs} grouped={grouped} activeSlug={slugStr} />
+              <DocsSidebar grouped={grouped} activeSlug={slugStr} />
             </div>
 
             {/* Main Content */}
