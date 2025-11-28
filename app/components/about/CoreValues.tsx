@@ -47,17 +47,17 @@ export default function CoreValues() {
         {coreValues.map((value, index) => (
           <div
             key={index}
-            className="flex flex-col items-center text-center gap-3 p-6 rounded-xl bg-white dark:bg-primary/10"
+            className="flex flex-col gap-4 rounded-xl border border-gray-200 dark:border-gray-800 bg-background-light dark:bg-gray-900/50 p-6 text-center items-center hover:border-primary/50 transition-colors"
           >
             <span className="material-symbols-outlined !text-3xl text-secondary">
               {value.icon}
             </span>
-            <h3 className="text-primary dark:text-white text-lg font-bold">
-              {value.title}
-            </h3>
-            <p className="text-text-light dark:text-text-dark text-sm">
-              {value.description}
-            </p>
+            <div className="flex flex-col gap-1">
+              <h3 className="text-primary dark:text-white text-lg font-bold">{value.title}</h3>
+              <p className="text-sm text-gray-600 dark:text-gray-400">
+                {value.description}
+              </p>
+            </div>
           </div>
         ))}
       </div>

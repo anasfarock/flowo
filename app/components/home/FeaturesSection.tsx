@@ -51,15 +51,13 @@ export default function FeaturesSection() {
                 className="flex flex-col gap-4 rounded-xl border border-gray-200 dark:border-gray-800 bg-background-light dark:bg-gray-900/50 p-6 text-center items-center hover:border-primary/50 transition-colors"
               >
                 {/* Icon */}
-                <div className="text-primary bg-primary/10 p-3 rounded-full">
-                  <span className="material-symbols-outlined text-3xl inline-block">
-                    {feature.icon}
-                  </span>
-                </div>
+                <span className="material-symbols-outlined !text-3xl text-secondary">
+                  {feature.icon}
+                </span>
 
                 {/* Content */}
                 <div className="flex flex-col gap-1">
-                  <h3 className="text-lg font-bold">{feature.title}</h3>
+                  <h3 className="text-primary dark:text-white text-lg font-bold">{feature.title}</h3>
                   <p className="text-sm text-gray-600 dark:text-gray-400">
                     {feature.description}
                   </p>

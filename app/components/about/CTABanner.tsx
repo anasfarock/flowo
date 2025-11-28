@@ -12,12 +12,12 @@ export default function CTABanner() {
           </p>
         </div>
         <div className="flex flex-shrink-0 gap-3">
-          <button className="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-5 bg-secondary text-primary text-base font-bold leading-normal tracking-[0.015em] hover:bg-opacity-90 transition-colors">
+          <button className="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-5 bg-white text-primary text-base font-bold leading-normal tracking-[0.015em] hover:bg-opacity-90 transition-colors">
             <span className="truncate">See Our Solutions</span>
           </button>
-          <button className="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-5 bg-white/20 text-white text-base font-bold leading-normal tracking-[0.015em] hover:bg-white/30 transition-colors">
+          {/* <button className="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-5 bg-white/20 text-white text-base font-bold leading-normal tracking-[0.015em] hover:bg-white/30 transition-colors">
             <span className="truncate">Get a Demo</span>
-          </button>
+          </button> */}
         </div>
       </div>
     </div>

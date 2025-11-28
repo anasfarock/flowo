@@ -33,7 +33,7 @@ const teamMembers: TeamMember[] = [
 
 export default function TeamShowcase() {
   return (
-    <div className="py-16 sm:py-20">
+    <div className="bg-primary/10 dark:bg-primary/20 p-8 md:p-16 text-center">
       <div className="flex flex-col gap-4 text-center mb-12">
         <h2 className="text-primary dark:text-white text-3xl font-bold leading-tight tracking-tight">
           Meet the Team
