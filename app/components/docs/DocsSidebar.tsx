@@ -48,7 +48,7 @@ export default function DocsSidebar({ docs, activeSlug, grouped }: DocsSidebarPr
 
       {/* Sidebar */}
       <aside
-        className={`fixed lg:static inset-0 lg:inset-auto w-64 bg-card-light dark:bg-card-dark border-r border-gray-200 dark:border-gray-700 overflow-y-auto z-40 transform transition-transform duration-300 ${
+        className={`fixed lg:static inset-y-0 left-0 lg:inset-auto w-64 bg-card-light dark:bg-card-dark border-r border-gray-200 dark:border-gray-700 overflow-y-auto z-40 transform transition-transform duration-300 lg:h-screen lg:sticky lg:top-0 ${
           mobileOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"
         }`}
       >
