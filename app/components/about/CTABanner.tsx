@@ -9,7 +9,7 @@ export default function CTABanner() {
             Ready to Transform Your Business?
           </h2>
           <p className="text-white/80 max-w-2xl">
-            See how Flowo's intelligent automation can drive growth, efficiency,
+            See how Flowo&apos;s intelligent automation can drive growth, efficiency,
             and innovation for your team.
           </p>
         </div>
