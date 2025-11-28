@@ -14,9 +14,9 @@ export default function ProductHero() {
               workflows and boost productivity.
             </h2>
           </div>
-          <button className="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-5 bg-primary text-white text-base font-bold leading-normal tracking-[0.015em] hover:bg-opacity-90 transition-colors">
+          {/* <button className="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-5 bg-primary text-white text-base font-bold leading-normal tracking-[0.015em] hover:bg-opacity-90 transition-colors">
             <span className="truncate">Explore Automations</span>
-          </button>
+          </button> */}
         </div>
       </div>
     </section>

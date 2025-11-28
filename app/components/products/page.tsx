@@ -87,7 +87,7 @@ export default function ProductsPage({
   };
 
   return (
-    <main className="flex-grow">
+    <main className="pb-16 sm:pb-24">
       <ProductHero />
       <ProductFilters
         categories={categories}
