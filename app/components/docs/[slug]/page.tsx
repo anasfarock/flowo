@@ -1,5 +1,5 @@
 
-import { getDocBySlug, getDocSlugs, getAllDocs } from "@/lib/docs";
+import { getDocBySlug, getDocSlugs, getAllDocs } from "../../../lib/docs";
 import { notFound } from "next/navigation";
 import DocsSidebar from "../../../components/docs/DocsSidebar";
 import DocsContent from "../../../components/docs/DocsContent";
