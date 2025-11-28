@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function CTABanner() {
   return (
     <div className="w-full my-16 sm:my-24">
@@ -12,9 +14,11 @@ export default function CTABanner() {
           </p>
         </div>
         <div className="flex flex-shrink-0 gap-3">
-          <button className="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-5 bg-white text-primary text-base font-bold leading-normal tracking-[0.015em] hover:bg-opacity-90 transition-colors">
-            <span className="truncate">See Our Solutions</span>
-          </button>
+          <Link href="/products">
+            <button className="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-5 bg-white text-primary text-base font-bold leading-normal tracking-[0.015em] hover:bg-opacity-90 transition-colors">
+              <span className="truncate">See Our Solutions</span>
+            </button>
+          </Link>
           {/* <button className="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-5 bg-white/20 text-white text-base font-bold leading-normal tracking-[0.015em] hover:bg-white/30 transition-colors">
             <span className="truncate">Get a Demo</span>
           </button> */}
