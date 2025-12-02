@@ -1,7 +1,21 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import Link from "next/link";
 
 export default function Header() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleMenu = () => setIsOpen(!isOpen);
+
+  const navLinks = [
+    { href: "/", label: "Home" },
+    { href: "/products", label: "Products" },
+    { href: "/docs", label: "Documentation" },
+    { href: "/about", label: "About Us" },
+    { href: "/contact", label: "Contact" },
+  ];
+
   return (
     <header className="sticky top-0 z-50 w-full bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm border-b border-gray-200 dark:border-gray-800">
       <div className="container mx-auto px-4">
@@ -27,45 +41,60 @@ export default function Header() {
             </div>
           </Link>
 
-          {/* Navigation */}
+          {/* Desktop Navigation */}
           <div className="hidden md:flex flex-1 items-center justify-end gap-8">
             <nav className="flex items-center gap-9">
-              <Link
-                href="/"
-                className="text-sm font-medium hover:text-primary transition-colors"
-              >
-                Home
-              </Link>
-              <Link
-                href="/products"
-                className="text-sm font-medium hover:text-primary transition-colors"
-              >
-                Products
-              </Link>
-              <Link
-                href="/docs"
-                className="text-sm font-medium hover:text-primary transition-colors"
-              >
-                Documentation
-              </Link>
-              <Link
-                href="/about"
-                className="text-sm font-medium hover:text-primary transition-colors"
-              >
-                About Us
-              </Link>
-              <Link
-                href="/contact"
-                className="text-sm font-medium hover:text-primary transition-colors"
-              >
-                Contact
-              </Link>
+              {navLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="text-sm font-medium hover:text-primary transition-colors"
+                >
+                  {link.label}
+                </Link>
+              ))}
             </nav>
-            {/* <button className="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold tracking-wide hover:bg-primary/90 transition-colors">
-              Request a Demo
-            </button> */}
           </div>
+
+          {/* Mobile Menu Button */}
+          <button
+            onClick={toggleMenu}
+            className="md:hidden flex flex-col gap-1.5 focus:outline-none"
+            aria-label="Toggle menu"
+          >
+            <span
+              className={`h-0.5 w-6 bg-gray-800 dark:bg-gray-200 transition-all ${
+                isOpen ? "rotate-45 translate-y-2" : ""
+              }`}
+            ></span>
+            <span
+              className={`h-0.5 w-6 bg-gray-800 dark:bg-gray-200 transition-all ${
+                isOpen ? "opacity-0" : ""
+              }`}
+            ></span>
+            <span
+              className={`h-0.5 w-6 bg-gray-800 dark:bg-gray-200 transition-all ${
+                isOpen ? "-rotate-45 -translate-y-2" : ""
+              }`}
+            ></span>
+          </button>
         </div>
+
+        {/* Mobile Menu */}
+        {isOpen && (
+          <nav className="md:hidden pb-4 border-t border-gray-200 dark:border-gray-800 mt-2">
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="block py-3 text-sm font-medium hover:text-primary transition-colors"
+                onClick={() => setIsOpen(false)}
+              >
+                {link.label}
+              </Link>
+            ))}
+          </nav>
+        )}
       </div>
     </header>
   );
