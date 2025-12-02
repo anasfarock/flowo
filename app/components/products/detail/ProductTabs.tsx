@@ -9,7 +9,10 @@ interface Product {
   features: string[];
   integrations: string[];
   content: string;
+  rating?: number;
+  reviews?: number;
 }
+
 
 interface ProductTabsProps {
   product: Product;
