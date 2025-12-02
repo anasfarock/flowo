@@ -23,7 +23,7 @@ export default async function DocsPage() {
           <div className="flex flex-col lg:flex-row gap-8">
             {/* Sidebar - Sticky with independent scroll */}
             <div className="lg:w-64 lg:flex-shrink-0">
-              <DocsSidebar docs={docs} grouped={grouped} />
+              <DocsSidebar grouped={grouped} activeSlug={firstDoc?.slug} />
             </div>
 
             {/* Main Content */}
